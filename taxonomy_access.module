@@ -437,7 +437,7 @@ function taxonomy_access_field_widget_form_alter(&$element, &$form_state, $conte
 /**
  * Enables access control for a given role.
  *
- * @param varchar $role
+ * @param string $role
  *   The role name.
  *
  * @return bool
@@ -467,7 +467,7 @@ function taxonomy_access_enable_role($role) {
 /**
  * Indicates whether access control is enabled for a given role.
  *
- * @param varchar $role
+ * @param string $role
  *   The role name.
  *
  * @return bool
@@ -490,9 +490,9 @@ function taxonomy_access_role_enabled($role) {
 /**
  * Enables a vocabulary for the given role.
  *
- * @param varchar $vocabulary
+ * @param string $vocabulary
  *   The vocabulary to enable.
- * @param varchar $role
+ * @param string $role
  *   The role name.
  *
  * @return bool
@@ -535,9 +535,9 @@ function taxonomy_access_enable_vocab($vocabulary, $role) {
 /**
  * Disables a vocabulary for the given role.
  *
- * @param varchar $vocabulary
+ * @param string $vocabulary
  *   The vocabulary to enable.
- * @param varchar $role
+ * @param string $role
  *   The role name.
  *
  * @return bool
@@ -655,7 +655,7 @@ function _taxonomy_access_node_access_update_single(int $nid) {
 /**
  * Caches and retrieves nodes affected by a taxonomy change.
  *
- * @param array $affected_nodes
+ * @param array|null $affected_nodes
  *   (optional) If we are caching, the list of nids to cache.
  *   Defaults to NULL.
  * @param bool $reset
@@ -664,7 +664,7 @@ function _taxonomy_access_node_access_update_single(int $nid) {
  * @return
  *   The cached list of nodes.
  */
-function taxonomy_access_affected_nodes(array $affected_nodes = NULL, $reset = FALSE) {
+function taxonomy_access_affected_nodes(?array $affected_nodes = NULL, $reset = FALSE) {
   static $nodes = array();
 
   // If node_access_needs_rebuild or $reset are set, reset list and return.
@@ -695,7 +695,7 @@ function taxonomy_access_affected_nodes(array $affected_nodes = NULL, $reset = F
 /**
  * Gets node IDs with controlled terms or vocabs for any of the given roles.
  *
- * @param varchar $role
+ * @param string $role
  *    A single role name.
  *
  * @return array
@@ -724,7 +724,7 @@ function _taxonomy_access_get_controlled_nodes_for_role($role) {
 /**
  * Gets node IDs associated with the roles' global defaults.
  *
- * @param varchar $role
+ * @param string $role
  *   A single role name.
  *
  * @return array
@@ -765,7 +765,7 @@ function _taxonomy_access_get_nodes_for_global_default($role) {
  *
  * @param int|array $vocab_ids
  *    A single vocabulary ID or an array of IDs.
- * @param varchar $role.
+ * @param string $role.
  *    (optional) A single role name.
  *    This argument has the effect of filtering out nodes in terms that
  *    are already controlled invidually for the role.  Defaults to NULL.
@@ -815,7 +815,7 @@ function _taxonomy_access_get_nodes_for_defaults($vocab_ids, $role = NULL) {
 /**
  * Retrieves a list of terms controlled by the global default for a role.
  *
- * @param varchar $role
+ * @param string $role
  *   The role name.
  *
  * @return array
@@ -839,7 +839,7 @@ function _taxonomy_access_global_controlled_terms($role) {
 /**
  * Retrieves a list of terms controlled by the global default for a role.
  *
- * @param varchar $role
+ * @param string $role
  *   The role name.
  *
  * @return array
@@ -986,7 +986,7 @@ function _taxonomy_access_get_vocabulary_terms($vocab_id) {
 /**
  * Deletes module configurations for the given roles.
  *
- * @param varchar $role
+ * @param string $role
  *   A single role name.
  * @param bool $update_nodes
  *   (optional) A flag to determine whether nodes should be queued for update.
@@ -1081,7 +1081,7 @@ function taxonomy_access_delete_role_grants($role, $update_nodes = TRUE) {
  *
  * @param int|array $vocab_ids
  *   A single vocabulary ID or an array of vocabulary IDs.
- * @param varchar|null $role
+ * @param string|null $role
  *   (optional) A single role ID.  Defaults to NULL.
  * @param bool $update_nodes
  *   (optional) A flag to determine whether nodes should be queued for update.
@@ -1123,7 +1123,7 @@ function taxonomy_access_delete_default_grants($vocab_ids, $role = NULL, $update
  *
  * @param int|array $term_ids
  *   A single term ID or an array of term IDs.
- * @param varchar|null $role
+ * @param string|null $role
  *   (optional) A single role name.  Defaults to NULL.
  * @param bool $update_nodes
  *   (optional) A flag to determine whether nodes should be queued for update.
@@ -1169,7 +1169,7 @@ function taxonomy_access_delete_term_grants($term_ids, $role = NULL, $update_nod
  *
  * @param int $id
  *   The term or vocabulary ID.
- * @param varchar $role
+ * @param string $role
  *   The role name.
  * @param array $grants
  *   An array of grants to write, in the format grant_name => value.
@@ -1493,7 +1493,7 @@ function _taxonomy_access_format_node_access_record(stdClass $record) {
  * Returns an int value for gid based on role, from config.
  * Anonymous is always 0 and authenticated is always 1.
  *
- * @param varchar $role
+ * @param string $role
  *   The role that we need a gid value for, defaults to anonymous.
  * @param bool $create
  *   Whether or not to create a gid if one does not exist. Default false.
@@ -1613,7 +1613,7 @@ function taxonomy_access_user_list_terms() {
  * @param bool $create
  *   (optional) Whether to fetch grants for create (TRUE) or list (FALSE).
  *   Defaults to FALSE.
- * @param varchar $vocabularies
+ * @param string $vocabularies
  *   (optional) An array of vocabularies to limit the query.  Defaults to array().
  * @param object|null $account
  *   (optional) The account for which to retrieve grants.  If no account is
